@@ -103,38 +103,6 @@
           
         ]
       }
-    },{
-      "data": {
-        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/Data/Mining_map.csv"
-      },
-      "transform": [
-    {
-      "calculate": "datum['Deposit Name'] + ' (' + datum['Commodity Group'] + ')'",
-      "as": "label"
-    }
-  ],
-          "mark": {
-          "type": "text",
-          "align": "right",
-          "baseline": "middle",
-          "dx": -12,
-          "fontSize": 11,
-          "fontStyle": "italic"
-          },
-          "encoding": {
-          "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "text": {"field": "label", "type": "nominal"},
-          "color": {"value": "black"},
-          "opacity": {
-          "condition": {
-          "test": "datum['Deposit Name'] == 'Ballarat East' || datum['Deposit Name'] == 'Argyle' || datum['Deposit Name'] == 'Browns Range'|| datum['Deposit Name'] == 'Ranger'|| datum['Deposit Name'] == 'Huntly'|| datum['Deposit Name'] == 'Saraji'|| datum['Deposit Name'] == 'Balmoral Central'|| datum['Deposit Name'] == 'Greenbushes'",
-          "value": 1
-          },
-          "value": 0
-          }
-          }
-          
     }
   ]
 }
