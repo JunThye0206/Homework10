@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+  "title": "Mines in Australia",
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/ne.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_5"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "lightgray"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/ne.topojson",
+        "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "black"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/ne.topojson",
+        "format": {"type": "topojson", "feature": "ne_50m_lakes"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "black"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/ne.topojson",
+        "format": {"type": "topojson", "feature": "ne_50m_rivers_lake_centerlines"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "black"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/Data/Mining_map.csv"
+      },
+      "mark": {"type": "circle", "tooltip": true,
+      "stroke": "black", 
+        "strokeWidth": 0.5},
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "color": {
+          "field": "Commodity Group",
+          "type": "nominal",
+          "legend": {"title": "Type of Mine"},
+          "scale": {"domain": [
+              "Bauxite", "Coal", "Diamond",  "Iron ore", "Lithium", "Metal Deposits", "Rare earth elements", 
+              "Uranium"
+            ], 
+            "range": [
+              "#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", 
+              "#a65628", "#f781bf"
+            ]}
+        },
+        "tooltip": [
+          {"field": "Deposit Name", "type": "ordinal", "title": "Mine Name"},
+          {"field": "Longitude", "type": "quantitative", "title": "Longitude"},
+          {"field": "Latitude", "type": "quantitative", "title": "Latitude"},
+          {"field": "Commodity Group", "type": "ordinal", "title": "Type of Mine"}
+          
+        ]
+        
+        
+      }
+    }
+  ]
+}
