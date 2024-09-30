@@ -37,6 +37,39 @@
       "data": {
         "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/Data/Mining_map.csv"
       },
+      "params":[
+        {
+          "name": "commodity_selection",
+          "select": {"type": "point", "fields": ["Commodity Group"]},
+          "value": null,
+          "bind": {
+          "input": "select",
+          "options": [
+          null,
+          "Bauxite",
+          "Coal",
+          "Diamond",
+          "Iron ore",
+          "Lithium",
+          "Metal Deposits",
+          "Rare earth elements",
+          "Uranium"
+          ],
+          "labels":[
+          "Show All",
+          "Bauxite",
+          "Coal",
+          "Diamond",
+          "Iron ore",
+          "Lithium",
+          "Metal Deposits",
+          "Rare earth elements",
+          "Uranium"
+          ],
+          "name": "Commodity Group: "
+          }
+          }
+        ],
       "mark": {"type": "circle", "tooltip": true,
       "stroke": "black", 
         "strokeWidth": 0.5},
@@ -56,6 +89,12 @@
               "#a65628", "#f781bf"
             ]}
         },
+        "opacity": {
+          "condition": 
+            {"param": "commodity_selection", "value": 1}
+          ,
+          "value": 0.1
+          },
         "tooltip": [
           {"field": "Deposit Name", "type": "ordinal", "title": "Mine Name"},
           {"field": "Longitude", "type": "quantitative", "title": "Longitude"},
@@ -63,9 +102,39 @@
           {"field": "Commodity Group", "type": "ordinal", "title": "Type of Mine"}
           
         ]
-        
-        
       }
+    },{
+      "data": {
+        "url": "https://raw.githubusercontent.com/JunThye0206/Homework9/main/Data/Mining_map.csv"
+      },
+      "transform": [
+    {
+      "calculate": "datum['Deposit Name'] + ' (' + datum['Commodity Group'] + ')'",
+      "as": "label"
+    }
+  ],
+          "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -12,
+          "fontSize": 11,
+          "fontStyle": "italic"
+          },
+          "encoding": {
+          "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"},
+          "color": {"value": "black"},
+          "opacity": {
+          "condition": {
+          "test": "datum['Deposit Name'] == 'Ballarat East' || datum['Deposit Name'] == 'Argyle' || datum['Deposit Name'] == 'Browns Range'|| datum['Deposit Name'] == 'Ranger'|| datum['Deposit Name'] == 'Huntly'|| datum['Deposit Name'] == 'Saraji'|| datum['Deposit Name'] == 'Balmoral Central'|| datum['Deposit Name'] == 'Greenbushes'",
+          "value": 1
+          },
+          "value": 0
+          }
+          }
+          
     }
   ]
 }
