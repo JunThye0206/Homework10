@@ -1,0 +1,106 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 200,
+    "data": {
+      "url": "https://raw.githubusercontent.com/JunThye0206/Homework10/refs/heads/main/Data/actual_expected.csv"
+    },
+    "transform": [
+    {
+      "calculate": "'Actual: ' + datum.Actual + ', Expected: ' + datum.Expected",
+      "as": "label"
+    },
+    {
+  "calculate": "'Year: ' + datum.Year + '\\n' + ((datum.Proportion - 100) + '% over expected amount')",
+  "as": "percentage"
+},
+{
+"filter": "year_selection == null || datum.Year == year_selection"},
+
+  ],
+  "params": [
+{
+"name": "year_selection",
+"bind": {
+"input": "select",
+"options": [
+null,
+"2018",
+"2019",
+"2020",
+"2021",
+"2022",
+"2023"
+],
+"labels":[
+"Show All",
+"2018",
+"2019",
+"2020",
+"2021",
+"2022",
+"2023"
+],
+"name": "Date Selection: "
+}
+}
+],
+    "layer": [{
+        "mark": {"type": "bar", "clip": true},
+        "encoding": {
+          "x": {
+            "field": "Actual",
+            "type": "quantitative",
+            "title": "Mineral Exploration"
+          },
+          "y": {
+            "field": "Year",
+            "type": "ordinal"
+          },
+          "tooltip": [
+          {"field": "label", "type": "nominal", "title": "Mine Name"}
+        ]
+        }
+      },
+      {
+        "mark": "tick",
+        "encoding": {
+          "x": {
+            "field": "Expected",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "Year",
+            "type": "ordinal"
+          },
+          "color": {"value": "red"},
+          "tooltip": [
+          {"field": "label", "type": "nominal", "title": "Mine Name"}
+        ]
+        }
+      },
+      {
+        "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": 330,
+        "dy": 23,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+        },
+        "encoding": {
+        "text": {"field": "percentage", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+        "condition": {
+        "test": "datum['Year'] == '2021'",
+        "value": 1
+        },
+        "value": 0
+      }
+      }
+      }
+    ]
+  }
+  
