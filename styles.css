@@ -7,28 +7,19 @@ h1 {
 }
 
 body {
-    background-color: red;
+    background-color: lightgray;
 }
 
 .page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.pure-g {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 40px;
+    width: 500px;
+    background-color: white;
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
 }
 
 .vis-container {
-    width: 80vw; /* Adjust as per your requirement */
-    height: 60vh; /* Adjust as per your requirement */
+    width: 100%;
 }
 
 .description h2,
@@ -42,6 +33,10 @@ h1 {
 
 .description-left {
     padding-right: 20px;
+}
+
+.pure-g {
+    margin-bottom: 40px;
 }
 
 .small-font {
