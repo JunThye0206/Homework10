@@ -1,7 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 400,
-    "height": 200,
+    "title": "Actual vs Expected Mineral Exploration Expense in Australia",
+    "width": 800,
+    "height": 400,
     "data": {
       "url": "https://raw.githubusercontent.com/JunThye0206/Homework10/refs/heads/main/Data/actual_expected.csv"
     },
@@ -20,31 +21,31 @@
   ],
   "params": [
 {
-        "name": "year_selection",
-        "bind": {
-        "input": "select",
-        "options": [
-        null,
-        "2018",
-        "2019",
-        "2020",
-        "2021",
-        "2022",
-        "2023"
-        ],
-        "labels":[
-        "Show All",
-        "2018",
-        "2019",
-        "2020",
-        "2021",
-        "2022",
-        "2023"
-        ],
-        "name": "Date Selection: "
-        }
-        }
-        ],
+"name": "year_selection",
+"bind": {
+"input": "select",
+"options": [
+null,
+"2018",
+"2019",
+"2020",
+"2021",
+"2022",
+"2023"
+],
+"labels":[
+"Show All",
+"2018",
+"2019",
+"2020",
+"2021",
+"2022",
+"2023"
+],
+"name": "Date Selection: "
+}
+}
+],
     "layer": [{
         "mark": {"type": "bar", "clip": true},
         "encoding": {
@@ -56,14 +57,14 @@
           "y": {
             "field": "Year",
             "type": "ordinal"
-          },
+        },
           "tooltip": [
           {"field": "label", "type": "nominal", "title": "Mine Name"}
         ]
         }
       },
       {
-        "mark": "tick",
+        "mark": {"type":"tick"},
         "encoding": {
           "x": {
             "field": "Expected",
@@ -71,14 +72,11 @@
           },
           "y": {
             "field": "Year",
-            "type": "ordinal"
-          },
-          "y2": {
-            "aggregate": "max",
-            "field": "Year",
-            "type": "ordinal"
-          },
+            "type": "ordinal",
+            "scale": {"padding": 0.8} 
+            },
           "color": {"value": "red"},
+          "size": {"value": 30},
           "tooltip": [
           {"field": "label", "type": "nominal", "title": "Mine Name"}
         ]
@@ -90,7 +88,7 @@
         "align": "right",
         "baseline": "bottom",
         "dx": 330,
-        "dy": 23,
+        "dy": 10,
         "fontSize": 11.5,
         "fontStyle": "italic"
         },
